@@ -44,7 +44,11 @@ const SignupButton = styled(Button)`
    border-radius : 2px;
    box-shadow : 0 2px 4px 0 rgb(0 0 0 / 20%);
 `
-
+const singupIntialValues = {
+  name : "",
+  username : "",
+  password : ""
+}
 
 
 const Login = () => {
@@ -57,6 +61,8 @@ const Text = styled(Typography)`
 `;
 
 const [account,toggleAccount] = useState('login');
+const [signup,setSignup] = useState(singupIntialValues);
+
 
 const toggleSignup = () => { 
     if( account === "login") 
@@ -66,6 +72,11 @@ const toggleSignup = () => {
 }
 
 
+
+const onInputChange = (e) =>{
+  console.log(e.target.value);
+  setSignup({...signup,[e.target.name]: e.target.value});
+}
 
   return (
     <Component>
@@ -83,9 +94,9 @@ const toggleSignup = () => {
             </Wrapper>
            : 
             <Wrapper>
-                <TextField variant="standard" label="Enter Name"/>
-                <TextField variant="standard" label ="Enter Username"/>
-                <TextField variant="standard" label ="Enter Password"/>
+                <TextField variant="standard" name = "name" onChange = { (e)=> onInputChange(e)}  label="Enter Name"/>
+                <TextField variant="standard" name = "username" onChange = { (e)=> onInputChange(e)}   label ="Enter Username"/>
+                <TextField variant="standard" name = "password" onChange = { (e)=> onInputChange(e)}   label ="Enter Password"/>
                 
                 <SignupButton  variant= "contained">Sign up </SignupButton>
                 <Text style = {{textAlign : "center"}}>OR </Text>
